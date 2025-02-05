@@ -4,7 +4,6 @@ import Header from "../Header.jsx";
 import LoadingIndicator from "../UI/LoadingIndicator.jsx";
 import ErrorBlock from "../UI/ErrorBlock.jsx";
 import { fetchEvent, deleteEvent, queryClient } from "../../util/http.js";
-// Streak
 export default function EventDetails() {
 
   const navigation = useNavigate();
