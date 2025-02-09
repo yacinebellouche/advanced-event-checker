@@ -5,13 +5,13 @@ import LoadingIndicator from "../UI/LoadingIndicator.jsx";
 import ErrorBlock from "../UI/ErrorBlock.jsx";
 import { fetchEvent, deleteEvent, queryClient } from "../../util/http.js";
 import Modal from "../UI/Modal.jsx";
+import { useState } from "react";
 export default function EventDetails() {
   const [isDeleting, setIsDeleting] = useState(false);
   const navigation = useNavigate();
   const { id } = useParams("id");
-  console.log(id);
   const { data, isError, isPending, error } = useQuery({
-    queryKey: ["events"],
+    queryKey: ["events", id],
     queryFn: ({ signal }) => fetchEvent({ id, signal }),
   });
   const {

@@ -8,10 +8,10 @@ import { fetchEvents } from "../../util/http.js";
 export default function NewEventsSection() {
   // Note that in order to user isError we need to make sure that we throw an error in case the fetch didn't work
   const { data, isPending, isError, error } = useQuery({
-    queryKey: ["events"], //to cache the data
-    queryFn: fetchEvents,
-    staleTime: 5000, // to prevent unnecessary requests are sent 
-    gcTime: 30000, // Set the time to delete the Cache 
+    queryKey: ["events", { max: 3 }], //to cache the data
+    queryFn: ({ signal, queryKey }) => fetchEvents({ signal, ...queryKey[1] }),
+    staleTime: 5000, // to prevent unnecessary requests are sent
+    gcTime: 30000, // Set the time to delete the Cache
   });
 
   let content;
